@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ball Position Dashboard</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
+<body>
+  <h1>Ball Position Dashboard</h1>
+  <div id="ball-position">
+    <!-- Ball position will be displayed here -->
+  </div>
+
+  <script>
+    import consumer from "./channels/consumer"
+
+    consumer.subscriptions.create("BallPositionChannel", {
+      received(data) {
+        document.getElementById('ball-position').innerHTML = `
+          <p>ID: ${data.id}</p>
+          <p>X: ${data.x}</p>
+          <p>Y: ${data.y}</p>
+          <p>Z: ${data.z}</p>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
+

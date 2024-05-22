@@ -1,0 +1,32 @@
+<%= form_with(model: ball) do |form| %>
+  <% if ball.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ball.errors.count, "error") %> prohibited this ball from being saved:</h2>
+
+      <ul>
+        <% ball.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :x %>
+    <%= form.number_field :x, step: :any %>
+  </div>
+
+  <div class="field">
+    <%= form.label :y %>
+    <%= form.number_field :y, step: :any  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :z %>
+    <%= form.number_field :z, step: :any %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

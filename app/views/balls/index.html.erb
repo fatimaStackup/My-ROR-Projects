@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Balls</h1>
+<li class="nav-item text-light">
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-light" %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path, class: "text-light" %> or
+    <%= link_to "Sign in", new_user_session_path, class: "text-light" %>
+  <% end %>
+</li>
+<table>
+  <thead>
+    <tr>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @balls.each do |ball| %>
+      <tr>
+        <td><%= ball.x %></td>
+        <td><%= ball.y %></td>
+        <td><%= ball.z %></td>
+        <td><%= link_to 'Show', ball %></td>
+        <td><%= link_to 'Edit', edit_ball_path(ball) %></td>
+        <td><%= link_to 'Destroy', ball, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ball', new_ball_path %>
